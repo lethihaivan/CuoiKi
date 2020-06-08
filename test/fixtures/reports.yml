@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plan_daily: MyText
+  actual_work: MyText
+  next_plan: MyText
+  issue: MyText
+  time_submit: 2020-06-06 20:26:17
+
+two:
+  plan_daily: MyText
+  actual_work: MyText
+  next_plan: MyText
+  issue: MyText
+  time_submit: 2020-06-06 20:26:17

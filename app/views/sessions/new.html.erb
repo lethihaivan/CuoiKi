@@ -1,0 +1,72 @@
+<% provide(:title, "Log in") %>
+<!DOCTYPE html>
+<html>
+<head>
+  <STYLE type="text/css">
+body{
+  background-image:url(https://wallpapertag.com/wallpaper/full/c/a/a/157415-simplistic-wallpapers-1920x1080-lockscreen.jpg)
+}
+#login-name{
+font-size: 65px;
+font-family: arabic typesetting;
+border-bottom-style: ridge;
+color:white;
+
+}
+#login{
+background-color:rgba(13,13,13,0.2);
+min-height:500px;
+padding: 40px 80px 40px 80px;
+box-shadow: -10px -10px 9px #33cc33;
+
+}
+.user{
+font-size: 29px;
+
+font-family: arabic typesetting;
+
+color: white;
+
+}
+
+#iconn{
+
+background-color: #5cb85c;
+border-color: #4cae4c;
+color: white;
+
+}
+
+ </STYLE>
+  <title>Login Page</title>
+</head>
+<body>
+  <h1>Log in</h1>
+<div class="container">
+<br/>
+<br/>
+  <div class="row"> 
+<div class="col-md-6 col-md-offset-3" id="login">  
+      <%= form_for(:session, url: login_path) do |f| %>
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+      <br>
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+      <br>
+        <%= f.label :remember_me, class: "checkbox inline" do %>
+        <%= f.check_box :remember_me %>
+        <span>Remember me on this computer</span>
+      <% end %>
+      <br>
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+      <% end %>
+    <br/><br/><br/>
+    <%= link_to "Forget Password", new_password_reset_path, style: "color: red
+    ; font-size: 15px; float: right; margin-right: 10px;"%> 
+    <%= link_to "Register", sign_up_path, style: "color: green; font-size: 15px; float: right; margin-right: 10px;"%> 
+ </div>
+  </div>
+</div>
+  </body>
+  </html>

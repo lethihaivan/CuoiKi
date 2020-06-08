@@ -1,0 +1,31 @@
+  
+   <STYLE type="text/css">
+body{
+  background-image:url(https://wallpapertag.com/wallpaper/full/c/a/a/157415-simplistic-wallpapers-1920x1080-lockscreen.jpg)
+}
+
+</STYLE>
+<body>
+           <%=form_for(@user)do|f|%>
+  <%=render'layouts/error_messages', object: @user%>
+  <%= f.label :name%>
+  <%= f.text_field :name,class: 'form-control'%>
+  <%= f.label :email%>
+  <%= f.email_field :email,class: 'form-control'%>
+  <%= f.label :password%>
+  <%= f.password_field :password,class: 'form-control'%>
+  <%= f.label :password_confirmation%>
+  <%= f.password_field :password_confirmation,class: 'form-control'%>
+  <%= f.label :role%>
+  <%= f.text_field :role,class: 'form-control'%>
+  <%= f.label :department_name %>
+  <%= f.collection_select :department_name, Department.all, :department_name, :department_name %>
+  <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+  <%end%> 
+      
+
+
+</body>
+
+
+

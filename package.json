@@ -1,0 +1,12 @@
+{
+  "name": "haivan",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "3.5",
+    "bootstrap": "3.4.1",
+    "jquery": "3.4.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
+}

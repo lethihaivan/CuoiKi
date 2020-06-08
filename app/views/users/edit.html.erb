@@ -1,0 +1,25 @@
+<%provide(:title,'Edit user')%> 
+ <%provide(:button_text,'Save changes')%>
+
+   <STYLE type="text/css">
+  body{
+  background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+ </STYLE>
+ <h1>Update your profile</h1>
+  <div class="container">
+      <div class="col-md-6 col-md-offset-3" id="login"> 
+            <%=render'form'%>
+ 		<div class="gravatar_edit">
+ 			<br>
+ 			<%=gravatar_for @user%>
+ 			<a href="https://gravatar.com/emails"target="_blank">Change</a>
+ 		</div>	
+ 	</div>
+ </div>
+<br>
+<br>

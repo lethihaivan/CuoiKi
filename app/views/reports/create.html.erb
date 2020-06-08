@@ -1,0 +1,36 @@
+<%provide(:title,'Sent Report')%> 
+ <%provide(:button_text,'Sent Report')%>
+<!DOCTYPE html>
+<html>
+<head>
+
+
+</head>
+
+<body>
+<div class="container">
+<h1>Report Daily</h1>
+<div class="container emp-profile">
+  <div class="col-md-6 col-md-offset-3" id="login"> 
+            <form method="post">
+      
+  <%=form_for(@report) do |f|%>
+  <%= f.label :plan_daily%>
+  <%= f.text_field :plan_daily,class: 'form-control'%>
+  <%= f.label :actual_work%>
+  <%= f.text_field :actual_work,class: 'form-control'%>
+  <%= f.label :next_plan%>
+  <%= f.text_field :next_plan,class: 'form-control'%>
+  <%= f.label :issue%>
+  <%= f.text_field :issue,class: 'form-control'%>
+   <%= f.label :issue%>
+  <%= f.datetime_field :time_submit,class: 'form-control'%>
+  <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+  
+  <%end%> 
+           
+    </form>
+  </div>
+   </div> 
+</body>
+</html>
