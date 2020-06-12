@@ -23,7 +23,7 @@ class User < ApplicationRecord
   # validates :check_length_name, if: -> { name.present? }
    has_secure_password
       def check_length_name
-      	if name.sizee > 150
+      	if name.size > 150
       		errors.add :name , " Length maximun 150"
       	end
       end

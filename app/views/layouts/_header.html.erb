@@ -2,7 +2,7 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
 	
 	<div class="container">
-		<%= link_to "sample app", "#", id: "logo"  %> 
+		<%= link_to "Report Daily Systems", root_path, id: "logo"  %> 
 		<nav>
 			<ul class="nav navbar-nav navbar-right">
 				<li><%= link_to "Home", "#" %></li>
@@ -10,8 +10,9 @@
 				
 				<% if !current_user.nil? %>
 				<% if current_user.is_manage %>
-					<li><%= link_to "Manage department", departments_path %></li><% end %>
+					<li><%= link_to "Manage employee", departments_path %></li><% end %>
 				 <% if current_user.is_admin %>
+				 <li><%= link_to "Manage department", departments_path %></li>
 				<li><%= link_to "Users", users_path %></li><% end %>
 					<li><%= link_to "Sent Report", new_report_path %></li>
 				<li><%= link_to "Request", new_request_path %></li>

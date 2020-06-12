@@ -1,23 +1,17 @@
- 
 
-<li id="micropost-<%= @request %>">
-	<% if request.type_request == "Req late" %>
-  <%= link_to gravatar_for(request.user, size: 50), request.user %>
-  <span class="user"> <%= link_to request.user.name, request.user %></span>
+  <li id="micropost-<%= @request %>"   >
+    <span class="user"  style="text-align: center"> <%= link_to request.user.name, request.user %></span>
+	<% if request.type_request == "Req_late" %>
+  
   <span class="content"><p>Time go late  to  :  <%= request.time_late_to %></p></span>
   <span class="content"><p>Time go late from    :  <%= request.time_late_from %></p></span>
 
-   <% elsif request.type_request == "Req back early"
+   <% elsif request.type_request == "Req_back_ealy"
    	  %>
-     <%= link_to gravatar_for(request.user, size: 50), request.user %>
-  <span class="user"> <%= link_to request.user.name, request.user %></span>
   <span class="content"><p>Time back early to :<%= request.time_back_early_to %></p></span>
   <span class="content"><p>Time back early from: <%= request.time_back_early_from %></p></span>
 
-  <% elsif request.type_request == "Req go out" %>
-
-     <%= link_to gravatar_for(request.user, size: 50), request.user %>
-  <span class="user"> <%= link_to request.user.name, request.user %></span>
+  <% elsif request.type_request == "Req_go_out" %>
   <span class="content"><p>Time back go out to  :  <%= request.time_out_to %></p></span>
   <span class="content"><p>Time back go out  from    :  <%= request.time_out_from %></p></span>
   <% end %>

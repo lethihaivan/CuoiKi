@@ -6,16 +6,16 @@ class RequestsController < ApplicationController
 	end
 	def show
 		@request = Request.find_by id: params[:id]
-		@user = User.find_by id: params[:id]
+		@user = @request.user
+		#@user = User.find_by id: params[:id]
 		#@requests =  @user.requests.paginate(page: params[:page],per_page: 8)
 	end
 	def update
         #load_user
-        if @request.update(request_params)
-        # Handle a successful update.
+       if  @request.update(request_params) 
         flash[:success]="Request updated"
         redirect_to @request
-    else
+      else
     	render'edit'
     end
 end
@@ -25,7 +25,7 @@ def destroy
 	else
 		flash.now[:danger] = "Deleted Request fail!"
 	end
-	redirect_to users_url
+	redirect_to root_path
 end
 def edit
 
@@ -65,8 +65,8 @@ def approve_disagree
     @user = @request.user
     if @request.update_attribute :status , 2
     @request.save
-    RequestMailer.with(request: @request).sent_member(@user).deliver_now
-    redirect_to request_path(request) ,:flash => { :error => "Disagree !" }
+    RequestMailer.with(request: @request).disagree_email(@user).deliver_now
+    redirect_to request_path(@request) ,:flash => { :error => "Disagree !" }
     end
 end
 def request_params

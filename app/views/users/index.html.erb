@@ -16,7 +16,10 @@
                 <th>Role</th>
                 <th>Depaertment</th>
                 <th>Date Join</th>
-                <th>Add</th>
+                <% if current_user.is_admin %> 
+                 <th>Edit</th>
+                <th>Delete</th>
+                <th></th><% end %>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -26,14 +29,17 @@
             <tbody>
              <% @users.each do |user| %>                       
              <tr>
-              <td><%=  link_to user.name, user %> </td>
+              <td><%=   user.name %> </td>
               <td><%= user.email %></td>
               <td><%= user.role %></td>
               <td><%= user.department_name %></td>
               <td><%= user.created_at  %></td>
+              <% if current_user.is_admin %> 
+              <td><%= link_to value="Edit Profile" ,edit_user_path(user),
+                       class: 'btn btn-mini btn-success'%></td>
               <td><%= 
               link_to "Delete" , user_path(user), method: :delete , class: "btn btn-danger", data: {confirm: "Are you sure delete: #{user.name}???" }%>
-              </td> 
+              </td> <% end %>
             </tr>
             <% end %>
           </tbody>

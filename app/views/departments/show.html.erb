@@ -34,7 +34,8 @@
                 <th>Role</th>
                 <th>Depaertment</th>
                 <th>Date Join</th>
-                <th>Add</th>
+                <% if current_user.is_manage %>
+                <th>Add</th><% end %>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -43,14 +44,15 @@
             </thead>  
             <tbody>
              <% @users.each do |user| %>                        
-             <% if current_user.is_manage && user.department_id == current_user.department_id %>
+             <% if current_user.is_manage && user.department_id == current_user.department_id  || current_user.is_admin%>
              <tr>
               <td><%=  link_to user.name, user %> </td>
               <td><%= user.email %></td>
               <td><%= user.role %></td>
               <td><%= user.department_name %></td>
               <td><%= user.created_at  %></td>
-              <td><%= link_to("Remove", remove_user_department_path(user), class: 'btn btn-mini btn-danger', :confirm => "Are you sure?", :method => :post)%></td> 
+              <% if current_user.is_manage %>
+              <td><%= link_to("Remove", remove_user_department_path(user), class: 'btn btn-mini btn-danger', :confirm => "Are you sure?", :method => :post)%></td> <% end %>
             </tr>
             <% end %>
             <% end %>
@@ -60,4 +62,37 @@
     </div>
   </ul>
 </form>
+  <h2>User noon Department</h2>
+  
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name </th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Date Join</th>
+        <% if current_user.is_manage %>
+        <th>Add</th> <% end %>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    </thead>  
+    <tbody>
+      <% @users_non.each do |user| %> 
+      <% if user.department_id == nil%>
+      <tr>
+        <td><%=  link_to user.name, user %> </td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td><%= user.created_at  %></td>
+        <% if current_user.is_manage %>
+        <td><%= link_to("Add", add_user_path(user),class: 'btn btn-mini btn-success', :confirm => "Are you sure?", :method => :post)%></td><% end %>
+      </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>

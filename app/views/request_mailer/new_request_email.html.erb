@@ -4,8 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <p>You got a new request from </p>
+    <p>You got a new request from <%= @request.user.name %> </p>
     <%= link_to "View detail request",  @request %>
-    <p>request</p> 
   </body>
 </html>

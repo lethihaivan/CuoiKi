@@ -10,5 +10,4 @@ class Request < ApplicationRecord
     def status_name
         status ? "agree" : "disagree"
     end
-	
 end

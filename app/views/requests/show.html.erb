@@ -1,24 +1,45 @@
- <%provide(:title,'Sent Request')%> 
-
- <!DOCTYPE html>
+<%provide(:title,'Sent Request')%> 
+<!DOCTYPE html>
  <html>
  <head>
  </head>
  <body>
-  <div class="container">
+  <div class="container" style="text-align: center">
     <div class="container emp-profile">
       <section class="micropost_form"> 
-        <% if current_user.is_admin || current_user %>
-        <ol class="microposts">
+        <h3 style="text-align: center">
+         Status <%= @request.status  %>
+        </h3>
+        <% if  current_user.id == @user.id  &&  @request.status == "waiting" %>
+                   <div class="col-md-2">
+                 
+                    <li>
+                        <%= link_to value="Edit request" ,edit_request_path(@request),
+                        :class => " btn btn-mini btn-primary " %>
+                    </li>
+                </div>
+          <div class="col-md-2">
+                 
+                    <li>
+                        <%= link_to "Delete" , request_path(@request), method: :delete , class: "btn btn-danger", data: {confirm: "Are you sure delete: ???" }%>
+                    </li>
+                </div>
+                <br><br>
+       <% else %>  
+   
+       <% end %>
           <%= render @request  %>  
-       
+        <% if current_user.is_admin && @request.status == "waiting" %>
        <%= link_to 'Disagree', approve_disagree_path(@request), method: :post, class: 'btn btn-mini btn-danger'  %>
         <%= link_to 'Agree', approve_agree_path(@request), method: :post, class: 'btn btn-mini btn-primary'  %>
-      
+
+ 
         <% end %>
+
       </section>
     </div>
   </div>
+
 </body>
 
 </html>

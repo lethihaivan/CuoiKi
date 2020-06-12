@@ -1,13 +1,14 @@
 class DepartmentsController < ApplicationController
   before_action :load_department , only: %i(ban edit show destroy update)
   def index
-    @users = User.all
+    
     @departments = Department.paginate(page: params[:page])
   end
      def show
    	  #load_user
+      @users_non = User.all
      @department = Department.find_by id: params[:id]
-     @users = @department.users.paginate(page: params[:page],per_page: 3)
+     @users = @department.users.paginate(page: params[:page],per_page: 10)
    end
 
       def destroy

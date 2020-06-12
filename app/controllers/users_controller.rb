@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 	before_action :login? , only: %i(show edit update)
   before_action :load_user , only: %i(show edit update destroy)
-   before_action :correct_user? , only: %i(edit update)
+   #before_action :correct_user? , only: %i(edit update)
    def show
      #@report = current_user.reports.build
      @reports =  @user.reports.paginate(page: params[:page],per_page: 8)
@@ -11,7 +11,6 @@ class UsersController < ApplicationController
  
    def new
    	@user = User.new
-  #  @department = @user.departments.build department_params
    end
    def ban 
       @department = Department.new
@@ -52,7 +51,7 @@ class UsersController < ApplicationController
    end
 
    def update
-        #load_user
+         #@user = User.all
         if @user.update(user_params)
         # Handle a successful update.
         flash[:success]="Profile updated"
