@@ -1,17 +1,45 @@
 <% provide(:title, 'All users') %>
 <h1>All users</h1>
-<ul class="users">
-	<% @users.each do |user| %>
-	<li>
-		<%= gravatar_for user, size: 50 %>
-		<%= link_to user.name, user %>|
-		<%= user.email %>
-		<% if current_user.is_admin %>
-		<%= link_to "Delete" , user_path(user), method: :delete , class: "btn btn-danger", data: {confirm: "Are you sure delete: #{user.name}???" }%>
-		
-		<% end %>
-		</li>
-		<% end %>
-		
-	</ul>
-		
+
+		<div class="container emp-profile">
+  <form method="post">
+    <ul class="users">
+
+      <div class="media">
+        <div class="media-body">
+          
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Name </th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Depaertment</th>
+                <th>Date Join</th>
+                <th>Add</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+
+            </thead>  
+            <tbody>
+             <% @users.each do |user| %>                       
+             <tr>
+              <td><%=  link_to user.name, user %> </td>
+              <td><%= user.email %></td>
+              <td><%= user.role %></td>
+              <td><%= user.department_name %></td>
+              <td><%= user.created_at  %></td>
+              <td><%= 
+              link_to "Delete" , user_path(user), method: :delete , class: "btn btn-danger", data: {confirm: "Are you sure delete: #{user.name}???" }%>
+              </td> 
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ul>
+</form>
+</div>

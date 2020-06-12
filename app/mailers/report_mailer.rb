@@ -4,6 +4,6 @@ class ReportMailer < ApplicationMailer
 
   def submission user
     @report =  params[:report]
-    mail(to: user.email , subject: 'Report daily #{@report.user.name }')
+    mail(to: user.email , subject: 'Report daily #{ @report.user.name }')
   end
 end

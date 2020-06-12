@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
 	skip_before_action :verify_authenticity_token
-	before_action :load_request , only: %i(show edit update destroy)
+	before_action :load_request , only: %i( show edit update destroy)
 	def new
 		@request = Request.new
 	end
@@ -45,9 +45,29 @@ end
 def load_request
 	@request = Request.find_by id: params[:id]
 	unless @request
-		flash[:danger] = " Request not found : #{params[:id]}!!!"
 		redirect_to root_path
 	end
+end
+def approve_agree
+	
+	@request = Request.find_by id: params[:id]
+	@user = @request.user
+    if @request.update_attribute :status , 1
+    RequestMailer.with(request: @request).sent_member(@user).deliver_now
+    @request.save
+    redirect_to request_path(request), :flash => { :success => "agree successfull!" }
+    end
+end
+
+
+def approve_disagree
+    @request = Request.find_by id: params[:id]
+    @user = @request.user
+    if @request.update_attribute :status , 2
+    @request.save
+    RequestMailer.with(request: @request).sent_member(@user).deliver_now
+    redirect_to request_path(request) ,:flash => { :error => "Disagree !" }
+    end
 end
 def request_params
 	params.require(:request).permit(:type_request, :time_late_to, :time_late_from,

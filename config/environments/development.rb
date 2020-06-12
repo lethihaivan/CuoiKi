@@ -47,8 +47,8 @@ Rails.application.configure do
       :password => ENV["USER_PASSWORD"],
       :authentication  => "plain",
       :enable_starttls_auto => true,
-      :openssl_verify_mode => 'none',
-      :enable_starttls_auto => true 
+      :openssl_verify_mode => 'none'
+      # :enable_starttls_auto => true 
     }
   # Don't care if the mailer can't send.
  # config.action_mailer.raise_delivery_errors = false

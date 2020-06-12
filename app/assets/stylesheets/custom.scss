@@ -11,22 +11,22 @@ $gray-medium-light: #eaeaea;
   box-sizing:         border-box;
 }
 #login-name{
-font-size: 165px;
-font-family: arabic typesetting;
-border-bottom-style: ridge;
-color:white;
+  font-size: 165px;
+  font-family: arabic typesetting;
+  border-bottom-style: ridge;
+  color:white;
 
 }
 #login{
-background-color:rgba(13,13,13,0.2);
-min-height:500px;
-padding: 40px 80px 40px 80px;
-box-shadow: -10px -10px 9px #33cc33;
+  background-color:rgba(13,13,13,0.2);
+  min-height:500px;
+  padding: 40px 80px 40px 80px;
+  box-shadow: -10px -10px 9px #33cc33;
 
 }
 body {
   padding-top: 60px;
-   background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+  background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
 }
 
 section {
@@ -220,41 +220,41 @@ input {
   }
 }
 .microposts {
-.content {
-display: block;
-margin-left: 60px;
-img {
-display: block;
-padding: 5px 0;
-}
-}
-.timestamp {
-color: $gray-light;
-display: block;
-margin-left: 60px;
-}
+  .content {
+    display: block;
+    margin-left: 60px;
+    img {
+      display: block;
+      padding: 5px 0;
+    }
+  }
+  .timestamp {
+    color: $gray-light;
+    display: block;
+    margin-left: 60px;
+  }
 }
 .microposts {
-list-style: none;
-padding: 0;
-li {
-padding: 10px 0;
-border-top: 1px solid #e8e8e8;
-}
-.user {
-margin-top: 5em;
-padding-top: 0;
-}
-.gravatar {
-float: left;
-margin-right: 10px;
-margin-top: 5px;
-}
+  list-style: none;
+  padding: 0;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid #e8e8e8;
+  }
+  .user {
+    margin-top: 5em;
+    padding-top: 0;
+  }
+  .gravatar {
+    float: left;
+    margin-right: 10px;
+    margin-top: 5px;
+  }
 }
 .emp-profile{
-    padding: 3%;
-    margin-top: 3%;
-    margin-bottom: 3%;
-    border-radius: 0.5rem;
-    background: #fff;
+  padding: 3%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  border-radius: 0.5rem;
+  background: #fff;
 }

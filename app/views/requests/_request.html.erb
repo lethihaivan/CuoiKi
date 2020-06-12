@@ -7,19 +7,19 @@
   <span class="content"><p>Time go late  to  :  <%= request.time_late_to %></p></span>
   <span class="content"><p>Time go late from    :  <%= request.time_late_from %></p></span>
 
-   <% elsif request.type_request == "Req back ealy"
+   <% elsif request.type_request == "Req back early"
    	  %>
      <%= link_to gravatar_for(request.user, size: 50), request.user %>
   <span class="user"> <%= link_to request.user.name, request.user %></span>
-  <span class="content"><p>Time back early to :  <%= request.time_back_early_to %></p></span>
-  <span class="content"><p>Time back early from    :  <%= request.time_back_early_from %></p></span>
+  <span class="content"><p>Time back early to :<%= request.time_back_early_to %></p></span>
+  <span class="content"><p>Time back early from: <%= request.time_back_early_from %></p></span>
 
-  <% else %>
+  <% elsif request.type_request == "Req go out" %>
 
      <%= link_to gravatar_for(request.user, size: 50), request.user %>
   <span class="user"> <%= link_to request.user.name, request.user %></span>
-  <span class="content"><p>Time back early to :  <%= request.time_out_to %></p></span>
-  <span class="content"><p>Time back early from    :  <%= request.time_out_from %></p></span>
+  <span class="content"><p>Time back go out to  :  <%= request.time_out_to %></p></span>
+  <span class="content"><p>Time back go out  from    :  <%= request.time_out_from %></p></span>
   <% end %>
   <span class="content"><p>Time add to :  <%= request.time_add_to %></p></span>
   <span class="content"><p>Time add from    :  <%= request.time_add_from %></p></span>
