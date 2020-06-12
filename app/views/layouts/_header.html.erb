@@ -6,9 +6,11 @@
 		<nav>
 			<ul class="nav navbar-nav navbar-right">
 				<li><%= link_to "Home", "#" %></li>
-				<li><%= link_to "Manage department", departments_path %></li>
+			
 				
 				<% if !current_user.nil? %>
+				<% if current_user.is_manage %>
+					<li><%= link_to "Manage department", departments_path %></li><% end %>
 				 <% if current_user.is_admin %>
 				<li><%= link_to "Users", users_path %></li><% end %>
 					<li><%= link_to "Sent Report", new_report_path %></li>
