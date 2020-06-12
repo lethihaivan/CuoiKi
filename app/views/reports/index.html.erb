@@ -1,0 +1,13 @@
+<% provide(:title, 'All Reports') %>
+<h1>All Reports</h1>
+<ul class="users">
+	<% if @user.reports.any? %>
+	<li>
+		<%= link_to report.id, report %>|
+		<%= @user.email %>
+		</li>
+		<% end %>
+
+		
+	</ul>
+		

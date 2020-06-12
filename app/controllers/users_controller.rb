@@ -3,21 +3,37 @@ class UsersController < ApplicationController
 	before_action :login? , only: %i(show edit update)
   before_action :load_user , only: %i(show edit update destroy)
    before_action :correct_user? , only: %i(edit update)
- 
    def show
-   	  #load_user
-      @reports = @user.reports.paginate(page: params[:page])
+     #@report = current_user.reports.build
+     @reports =  @user.reports.paginate(page: params[:page],per_page: 8)
+     @requests =  @user.requests.paginate(page: params[:page],per_page: 8)
    end
  
    def new
    	@user = User.new
+  #  @department = @user.departments.build department_params
    end
-
+   def ban 
+      @department = Department.new
+      @user = User.find(params[:id])
+      @user.update_attribute(:department_id,:null)
+      redirect_to @department, :notice => "User removed my department!"
+    end
+    def adduser
+      @department = Department.new
+      @user = User.find(params[:id])
+      depar_id = current_user.department_id
+    if @user.update_attribute(:department_id, depar_id)
+      @user.save
+     redirect_to @department, :flash => { :success => "Add successfull! #{@user.department_id}" }
+    else
+     redirect_to @department , :flash => { :error => "Failed to add! #{depar_id}" }
+    end
+      
+    end
   def index
-    #@users = User.all
     @users = User.paginate(page: params[:page])
   end
-
   def create
    	   @user = User.new(user_params)
    	   if @user.save
@@ -25,7 +41,7 @@ class UsersController < ApplicationController
            flash[:success] = "Create acount successfull!"
            redirect_to @user
        else
-       	    flash.now[:danger] = "Create acount fail!"
+       	    flash.now[:danger] = "Create acount Fails!"
             render 'new'
        end
    end
@@ -37,13 +53,21 @@ class UsersController < ApplicationController
 
    def update
         #load_user
-        if@user.update(user_params)
+        if @user.update(user_params)
         # Handle a successful update.
         flash[:success]="Profile updated"
         redirect_to @user
         else
           render'edit'
         end
+    end
+    def search  
+      @results = User.all
+      if params[:search]
+        @results = User.search(params[:search]).order("created_at DESC").paginate(page: params[:page],per_page: 5)
+      else
+        @results = User.all.order("created_at DESC").paginate(page: params[:page],per_page: 5)
+      end
     end
  def destroy
    if @user.destroy
@@ -63,7 +87,7 @@ class UsersController < ApplicationController
     end
 
     def load_user
-      @user = User.find(params[:id])
+      @user = User.find_by id: params[:id]
      unless @user
       flash[:danger] = " USer not found : #{params[:id]}!!!"
        redirect_to root_path

@@ -1,0 +1,48 @@
+  <STYLE type="text/css">
+body{
+    background: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg') no-repeat center center fixed;
+}
+
+</STYLE>
+<div class="container emp-profile">
+<h3>Search Result</h3>  
+	<% if @results.blank? %>
+  <h4>There are no user containing the term <%= params[:search] %>.</h4>
+   <% end %>
+
+    <div class="media">
+  <div class="media-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Name </th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Dapartment</th>
+          <th>Date Join</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+
+      </thead>  
+      <tbody>
+        <% @results.each do |result| %> 
+           <% if current_user.is_manage && result.department_id == current_user.department_id || result.department_id == nil %>
+          <tr>
+            <td><%= result.name %> </td>
+            <td><%= result.email %></td>
+            <td><%= result.role %></td>
+            <td><%= result.department_name %></td>
+            <td><%= result.created_at  %></td>
+            <td><%= link_to 'Show', result, class: 'btn btn-mini' %></td>
+            <td><%= link_to 'Edit', edit_user_path(result), class: 'btn btn-mini btn-success' %></td>
+            <td><%= link_to 'Destroy', result , method: :delete, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>

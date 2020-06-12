@@ -1,0 +1,11 @@
+<li id="micropost-<%= @report %>">
+  <%= link_to gravatar_for(report.user, size: 50), report.user %>
+  <span class="user"> <%= link_to report.user.name, report.user %></span>
+  <span class="content"><p>Plan_daily    :  <%= report.plan_daily %></p></span>
+  <span class="content"><p>Actual_work    :  <%= report.actual_work %></p></span>
+  <span class="content"><p>Next_plan    :<%= report.next_plan %></p></span>
+  <span class="content"><p>Issue    :<%= report.issue %></p></span>
+    <span class="timestamp">
+    Submited <%= time_ago_in_words report.created_at %> ago.
+   </span>
+</li>

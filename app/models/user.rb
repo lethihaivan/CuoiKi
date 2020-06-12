@@ -1,7 +1,13 @@
 class User < ApplicationRecord
-   belongs_to :department
+
+  scope :filter_by_id, -> (id) { where id: id }
+  scope :filter_by_name, -> (name) { where("name like ?", "#{name}%")}
+  
+  has_many :requests , dependent: :destroy
+  belongs_to  :department, optional: true 
+
    has_many :reports , dependent: :destroy
-  validates :department_id, presence: true, inclusion: {in: Department.all.map(&:id)}
+  #validates :department_id, presence: true, inclusion: {in: Department.all.map(&:id)}
   attr_accessor :remember_token, :activation_token , :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
@@ -34,7 +40,7 @@ class User < ApplicationRecord
         return false if digest.nil?
         BCrypt::Password.new(digest).is_password? token
       end
-  # Forgets a user
+  # Forgets a user 
   def forget
     update_attribute(:remember_digest, nil)
   end
@@ -55,24 +61,30 @@ class User < ApplicationRecord
       UserMailer.password_reset(self).deliver_now
 
     end
+
     # Activates an account.
   def activate
     update_columns(activated: true, activated_at: Time.zone.now)
   end
 
-       def department_name=(name)
-     self.department = Department.find_or_create_by(department_name: department_name)
+ def department_name=(department_name)
+     self.department = Department.find_by(department_name: department_name)
    end
 
    def department_name
       self.department ? self.department.department_name : nil
    end
-
+def filtering_params(params)
+  params.slice(:id, :name, :email)
+  end
+def self.search(search)
+  where("name LIKE ? OR email LIKE ? OR role LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+end
       def password_reset_expired?
         reset_sent_at < 2.hours.ago
       end
       def feed
-        Peports.where "user_id = ?", id
+        Reports.where "user_id = ?", id
       end
       private
       def downcase_email

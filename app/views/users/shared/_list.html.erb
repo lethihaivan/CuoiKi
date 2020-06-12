@@ -1,0 +1,6 @@
+<% if @list_users.any? %>
+<ol class="User departmnent">
+<%= render @list_user %>
+</ol>
+<%= will_paginate @list_users %>
+<% end %>

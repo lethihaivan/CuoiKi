@@ -1,0 +1,93 @@
+ <STYLE type="text/css">
+ 	.users {
+ 		list-style: none;
+ 		margin: 0;
+ 		li {
+ 			overflow: auto;
+ 			padding: 10px 0;
+ 			border-bottom: 1px solid $gray-lighter;
+ 		}
+ 	}
+ </STYLE>
+ <% provide(:title, 'Manage Department') %>
+ <h1>Manage Department</h1>
+ <div class="container emp-profile">
+ 	<% if current_user.is_admin ||  current_user.is_manage%>
+ 	<%= form_tag(search_user_path, :method => "get",   class: 'navbar-form navbar-left') do %>  
+ 	<div class="input-group">  
+ 		<%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
+ 		<div class="input-group-btn">  
+ 			<%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+ 		</div>  
+ 	</div>  <% end %><% end %>
+ 	<br>
+ 	<br>
+ 	<br>
+ 	<br>
+ 	<div class="media">
+ 		<div class="media-body">
+ 			<table class="table table-hover">
+ 				<thead>
+ 					<tr>
+ 						<th>Name Manage </th>
+ 						<th>Department</th>
+ 						<th>Edit Department</th>
+ 						<th>Destroy Department</th>
+ 						<th></th>
+ 						<th></th>
+ 						<th></th>
+ 					</tr>
+ 				</thead>
+ 				
+ 				<tbody>
+ 					<% @departments.each do |depart| %>
+ 					<% if current_user.is_manage%>
+ 					<% if current_user.department_id == depart.id %>
+ 					<tr>
+ 						<td><%= link_to current_user.name, current_user %></td>
+ 						<td><%= link_to depart.department_name, depart %></td>
+ 						<td><%= link_to 'Edit ', edit_department_path(depart), class: 'btn btn-mini btn-success' %></td>
+ 						<td><%= link_to 'Destroy', department_path(depart), method: :delete, class: 'btn btn-mini btn-danger', data: { confirm: 'Are you sure?' } %></td>
+ 					</tr>
+ 					<% end %>
+ 					<% end %>
+ 					<% end %>
+ 				</tbody>
+ 			</table>
+ 		</div>
+ 	</div>
+
+ 	<h2>User noon Department</h2>
+ 	
+ 	<table class="table table-hover">
+ 		<thead>
+ 			<tr>
+ 				<th>Name </th>
+ 				<th>Email</th>
+ 				<th>Role</th>
+ 				<th>Date Join</th>
+ 				<th>Add</th>
+ 				<th></th>
+ 				<th></th>
+ 				<th></th>
+ 			</tr>
+
+ 		</thead>  
+ 		<tbody>
+ 			<% @users.each do |user| %> 
+ 			<% if user.department_id == nil%>
+ 			<tr>
+ 				<td><%=  link_to user.name, user %> </td>
+ 				<td><%= user.email %></td>
+ 				<td><%= user.role %></td>
+ 				<td><%= user.created_at  %></td>
+ 				<td><%= link_to("Add", add_user_path(user),class: 'btn btn-mini btn-success', :confirm => "Are you sure?", :method => :post)%></td>
+ 			</tr>
+ 			<% end %>
+ 			<% end %>
+ 		</tbody>
+ 	</table>
+
+ 	
+ 	
+ </div>

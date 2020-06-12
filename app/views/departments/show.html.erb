@@ -1,0 +1,63 @@
+ <STYLE type="text/css">
+  .emp-profile{
+    padding: 3%;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    border-radius: 1rem;
+    background: #fff;
+  }
+  .users {
+    list-style: none;
+    margin: 0;
+    li {
+      overflow: auto;
+      padding: 10px 0;
+      border-bottom: 1px solid $gray-lighter;
+    }
+  }
+</STYLE>
+<% provide(:title, @department.department_name) %>
+<h1>All user of <%= @department.department_name %> </h1>
+
+<div class="container emp-profile">
+  <form method="post">
+    <ul class="users">
+
+      <div class="media">
+        <div class="media-body">
+          
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Name </th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Depaertment</th>
+                <th>Date Join</th>
+                <th>Add</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+
+            </thead>  
+            <tbody>
+             <% @users.each do |user| %>                        
+             <% if current_user.is_manage && user.department_id == current_user.department_id %>
+             <tr>
+              <td><%=  link_to user.name, user %> </td>
+              <td><%= user.email %></td>
+              <td><%= user.role %></td>
+              <td><%= user.department_name %></td>
+              <td><%= user.created_at  %></td>
+              <td><%= link_to("Remove", remove_user_department_path(user), class: 'btn btn-mini btn-danger', :confirm => "Are you sure?", :method => :post)%></td> 
+            </tr>
+            <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ul>
+</form>
+</div>

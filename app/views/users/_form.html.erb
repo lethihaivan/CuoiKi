@@ -18,12 +18,8 @@ body{
   <%= f.password_field :password_confirmation,class: 'form-control'%>
   <%= f.label :role%>
   <%= f.text_field :role,class: 'form-control'%>
-  <%= f.label :department_name %>
-  <%= f.collection_select :department_name, Department.all, :department_name, :department_name %>
   <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
   <%end%> 
-      
-
 
 </body>
 

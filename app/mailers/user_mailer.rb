@@ -19,4 +19,9 @@ class UserMailer < ApplicationMailer
       @user = user
       mail to: user.email, subject: "Password reset"
     end
+    def sent_report user 
+      @user = user
+      mail to: user.email, subject: "Sent Report Daily"
+      
+    end
 end

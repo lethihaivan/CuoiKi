@@ -1,0 +1,14 @@
+  
+ <div class="container">
+        <div class="container emp-profile">
+          <section class="micropost_form"> 
+        <% if current_user.is_admin || current_user %>
+           <ol class="microposts">
+            <%= render @request  %>  
+        </ol> 
+    </div>
+    <% end %>  
+   </section>
+</div>
+
+

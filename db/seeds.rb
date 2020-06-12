@@ -5,9 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Department.create!(department_name:  "Nhan Su")
-Department.create!(department_name:  "Ke Toan")
-Department.create!(department_name:  "Hanh Chinh")
+#Department.create!(department_name:  "Nhan Su")
+#Department.create!(department_name:  "Ke Toan")
+#Department.create!(department_name:  "Hanh Chinh")
 
 User.create!(name:  "Hai Van",
              email: "haivan17tclc2@gmail.com",
@@ -18,12 +18,13 @@ User.create!(name:  "Hai Van",
              activated_at: Time.zone.now,
              department_id: 1
              )
-User.create!(name:  "Khanh Le",
-             email: "khanhle19qt@gmail.com",
-             password:              "khanhle",
-             password_confirmation: "khanhle",
+User.create!(name:  "Khai Le",
+             email: "khaile@gmail.com",
+             password:              "khaile",
+             password_confirmation: "khaile",
              is_admin: false,
              activated: true, 
+             is_manage: true,
              activated_at: Time.zone.now,
-              department_id: 2
+              department_id: 3
              )

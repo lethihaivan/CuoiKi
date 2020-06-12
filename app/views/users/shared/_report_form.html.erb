@@ -1,0 +1,14 @@
+ <%=form_for(@report, url: reports_path) do |f|%> 
+  <%= f.label :plan_daily%>
+  <%= f.text_field :plan_daily,class: 'form-control'%>
+  <%= f.label :actual_work%>
+  <%= f.text_field :actual_work,class: 'form-control'%>
+  <%= f.label :next_plan%>
+  <%= f.text_field :next_plan,class: 'form-control'%>
+  <%= f.label :issue%>
+  <%= f.text_field :issue,class: 'form-control'%>
+   <%= f.label :issue%>
+  <%= f.datetime_field :time_submit,class: 'form-control'%>
+  <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+  
+  <%end%> 

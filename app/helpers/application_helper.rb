@@ -1,5 +1,7 @@
 module ApplicationHelper
-
+      def time_ago_in_words(from_time, options = {})
+        distance_of_time_in_words(from_time, Time.now, options)
+      end
 	def login_user user
 		session[:user_id] = user.id
 	end

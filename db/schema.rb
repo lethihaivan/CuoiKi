@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_06_135945) do
+ActiveRecord::Schema.define(version: 2020_06_11_093016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,24 @@ ActiveRecord::Schema.define(version: 2020_06_06_135945) do
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.string "type_request"
+    t.datetime "time_late_to"
+    t.datetime "time_late_from"
+    t.datetime "time_back_early_to"
+    t.datetime "time_back_early_from"
+    t.datetime "time_add_to"
+    t.datetime "time_add_from"
+    t.datetime "time_out_to"
+    t.datetime "time_out_from"
+    t.text "reason"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -68,5 +86,6 @@ ActiveRecord::Schema.define(version: 2020_06_06_135945) do
   end
 
   add_foreign_key "reports", "users"
+  add_foreign_key "requests", "users"
   add_foreign_key "users", "departments"
 end

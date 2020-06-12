@@ -1,0 +1,88 @@
+    <%provide(:title,'Sent Request')%> 
+    <%provide(:button_text,'Submit Request')%>
+    <!DOCTYPE html>
+    <html>
+    <head>
+    </head>
+    <body>
+      <h1>Request  of user </h1>
+      <div class="container">
+        <div class="container emp-profile">
+          <section class="micropost_form"> 
+           <%=form_for(@request , url: requests_path) do |f|%> 
+           <div class="control-group">
+            <%= f.label "Type_request", class: 'control-label' %>
+            <div class="controls">
+              <%=  f.select(:type_request, options_for_select([['Request go late', 'Req_late'], ['Request back early', 'Req_back_ealy'], ['Request go out', 'Req_go_out']]), { include_blank: true }, { class: 'form-control'})  %>
+            </div>
+          </div>
+
+          <br>
+          <br>
+          <br>
+          <div id="req1" for="Req_late" >
+           <%= f.label :time_late_to%>
+           <%= f.datetime_field :time_late_to,class: 'form-control'%>
+           <%= f.label :time_late_from%>
+           <%= f.datetime_field :time_late_from,class: 'form-control'%>
+
+         </div>
+         <div id="req2" for="Req_back_ealy">
+          <%= f.label :time_back_early_to%>
+          <%= f.datetime_field :time_back_early_to,class: 'form-control'%>
+          <%= f.label :time_back_early_from%>
+          <%= f.datetime_field :time_back_early_from,class: 'form-control'%>
+        </div>
+        <div id="req3" for="Req_go_out" >
+          <%= f.label :time_out_to%>
+          <%= f.datetime_field :time_out_to,class: 'form-control'%>
+          <%= f.label :time_out_from%>
+          <%= f.datetime_field :time_out_from,class: 'form-control'%>
+    
+        </div>
+          <%= f.label :time_add_to%>
+          <%= f.datetime_field :time_add_to,class: 'form-control'%>
+          <%= f.label :time_add_from%>
+          <%= f.datetime_field :time_add_from,class: 'form-control'%>
+          <%= f.label :reason%>
+          <%= f.text_field :reason,class: 'form-control'%>
+        <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+        <% end %>
+      </section>
+
+    </div>
+  </div><!-- /btn-group -->
+</body>
+<script>
+  $(function() {
+ 
+    $('#req1').show();
+    $('#req2').hide();
+    $('#req3').hide();
+    $('#request_type_request').val('Req_late'); // set gia tri defaul
+    $('#request_type_request').change(function() {
+      $('#req1').hide();
+      $('#req2').hide();
+      $('#req3').hide();
+    
+      var val = $(this).val();
+   
+      selectType(val)
+    });
+
+    var selectType = function(val) {
+      switch (val){
+       case 'Req_late':
+       $('#req1').show();
+       break;
+       case 'Req_back_ealy':
+       $('#req2').show();
+       break;
+       case 'Req_go_out':
+       $('#req3').show();
+       break;        
+     }
+   }
+ });
+   </script>
+   </html>
